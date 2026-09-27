@@ -1,4 +1,4 @@
-"""routine.py - Zach's speaker routines: music on the whole house at a set volume.
+"""routine.py - one-word speaker routines: music on the whole house at a set volume.
 
     python routine.py leisure     # your station on the whole house at 37%
     python routine.py work        # same station at 33% - low enough for video calls
