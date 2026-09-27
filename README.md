@@ -23,6 +23,7 @@ real music library or a real inbox, and it kept the lessons from the parts that 
 | [`tv-from-laptop`](skills/tv-from-laptop/SKILL.md) | Diagnoses a slow Android / Google TV from the laptop, reboots it, clears crash-looping apps, sets volume, sends remote keys | `adb` (Android platform-tools) |
 | [`tablet-display`](skills/tablet-display/SKILL.md) | Turns an old Windows tablet into an always-on display: remote access with no keyboard, no sleeping, a web page full screen on every sign-in | Windows 10/11 Pro tablet |
 | [`pi-home-server`](skills/pi-home-server/SKILL.md) | Runs a Raspberry Pi as a small home server: a 24/7 news collector, a dashboard on the home network, and deploying to it safely | Raspberry Pi, Python 3 |
+| [`robot-vacuum-home-assistant`](skills/robot-vacuum-home-assistant/SKILL.md) | Puts a cloud-only robot vacuum (Dreame, Xiaomi, Mova) under the agent's control via Home Assistant on a Pi: find it, set up, start / dock / rooms, recover when it's lost | Raspberry Pi, Docker, Python |
 | [`overnight-jobs`](skills/overnight-jobs/SKILL.md) | Leaves a Windows laptop running agent jobs overnight: awake until a set time, proof in the morning, reachable from your phone | Windows, PowerShell |
 
 | Walkthrough | The story |
@@ -33,6 +34,7 @@ real music library or a real inbox, and it kept the lessons from the parts that 
 | [The TV was "loading funny"](walkthroughs/04-tv-loading-funny.md) | 86 days of uptime, 1,100 zombie processes, and one reboot |
 | [An old Surface tablet became an always-on display](walkthroughs/05-old-tablet-display.md) | six taps, one firewall rule, and why ping lies |
 | [The Raspberry Pi was sharing more than it should](walkthroughs/06-pi-was-sharing-too-much.md) | a whole folder on the home network, and deploying by allowlist |
+| [The robot vacuum joined the AI, then got lost](walkthroughs/07-robot-vacuum-got-lost.md) | a device that hides from scans, a beta integration, and a "drop" error |
 
 ## Use a skill
 
@@ -87,6 +89,11 @@ real music library or a real inbox, and it kept the lessons from the parts that 
   only apply to Private networks while your Wi-Fi is Public. [`tablet-display`](skills/tablet-display/SKILL.md#2-ssh-with-a-key-so-the-agent-can-run-things-on-it)
 - **What should I run on a Raspberry Pi at home?** A news collector, a dashboard, Docker
   services, deployed by allowlist. [`pi-home-server`](skills/pi-home-server/SKILL.md)
+- **How do I control a Dreame robot vacuum from Home Assistant or a script?** The community
+  integration; Dreamehome-app robots need its 2.0 beta. [`robot-vacuum-home-assistant`](skills/robot-vacuum-home-assistant/SKILL.md)
+- **Why can't I find my robot vacuum on my network?** It sleeps its Wi-Fi and ignores pings.
+  Watch the network while you restart it. [Walkthrough](walkthroughs/07-robot-vacuum-got-lost.md)
+- **My robot vacuum says "drop" error on a flat floor.** Clean the cliff sensors under the front bumper.
 - **How do I keep a Windows laptop awake overnight for an AI job, and prove it stayed
   awake?** A timed power request with a heartbeat log, plus `powercfg /requests`. [`overnight-jobs`](skills/overnight-jobs/SKILL.md)
 
