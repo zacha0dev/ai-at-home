@@ -75,6 +75,24 @@ a button named `<name> Google Cast`. Those support UI Automation's Invoke.
 - The Store version of the app has no command-line switches; `Start-Process spotify:playlist:<id>`
   opens a page, and UI Automation does the rest.
 
+## Control Spotify without the screen: Home Assistant (no screen)
+
+The desktop-app method takes over the screen for ~20 seconds. If you run Home Assistant
+(see `robot-vacuum-home-assistant` for a Pi setup), add its **Spotify** integration and the
+agent can do it all in the background:
+
+1. developer.spotify.com -> Create app: any name, redirect URI
+   `https://my.home-assistant.io/redirect/oauth`, tick **Web API**, accept the terms, Save.
+2. Home Assistant -> Add integration -> Spotify -> paste the app's Client ID and Client Secret
+   (you paste them, not the agent) -> approve in Spotify.
+3. The first time, my.home-assistant.io asks for your Home Assistant address: enter your
+   local URL (e.g. `http://<pi>.local:8123`), then **Link account**.
+
+Then: `media_player.select_source` (speaker group), `shuffle_set`, `play_media` with
+`spotify:playlist:<id>`, `media_next_track`, and `volume_set` on the cast group, all over
+HA's REST API. **Limit:** Spotify-made stations and radios ("Daily Mix", "<song> Radio") are
+hidden from the API; they can be resumed but not started. Use your own playlists for routines.
+
 ## Routines
 
 ```
