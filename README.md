@@ -20,12 +20,19 @@ real music library or a real inbox, and it kept the lessons from the parts that 
 | [`playlist-flow`](skills/playlist-flow/SKILL.md) | Orders a playlist so it *flows*: an energy arc, smooth tempo steps and compatible keys, like a DJ set | Python |
 | [`keep-the-beat`](skills/keep-the-beat/SKILL.md) | For songs you love the sound of but not the words: find the instrumental, dub, sample or a sound-alike with a better message | nothing |
 | [`inbox-cleanup`](skills/inbox-cleanup/SKILL.md) | Digs a buried inbox out: separates real spam and scams from legit bulk mail, blocks the scammers, keeps every receipt | a mail connector (Microsoft Graph / Outlook) or a browser |
+| [`tv-from-laptop`](skills/tv-from-laptop/SKILL.md) | Diagnoses a slow Android / Google TV from the laptop, reboots it, clears crash-looping apps, sets volume, sends remote keys | `adb` (Android platform-tools) |
+| [`tablet-display`](skills/tablet-display/SKILL.md) | Turns an old Windows tablet into an always-on display: remote access with no keyboard, no sleeping, a web page full screen on every sign-in | Windows 10/11 Pro tablet |
+| [`pi-home-server`](skills/pi-home-server/SKILL.md) | Runs a Raspberry Pi as a small home server: a 24/7 news collector, a dashboard on the home network, and deploying to it safely | Raspberry Pi, Python 3 |
+| [`overnight-jobs`](skills/overnight-jobs/SKILL.md) | Leaves a Windows laptop running agent jobs overnight: awake until a set time, proof in the morning, reachable from your phone | Windows, PowerShell |
 
 | Walkthrough | The story |
 |---|---|
 | [Spotify kept freezing on the whole-house speakers](walkthroughs/01-frozen-speaker-group.md) | a "half-alive" Nest Hub, and why that's worse than a dead one |
 | [Turning a messy Spotify library into 9 playlists that flow](walkthroughs/02-spotify-library-cleanup.md) | 1,800 songs sorted by mood and message, then ordered by tempo and key |
 | [Digging out of 1,400 emails](walkthroughs/03-inbox-dig-out.md) | throttled APIs, fake government filing scams, and the "keep one month" rule |
+| [The TV was "loading funny"](walkthroughs/04-tv-loading-funny.md) | 86 days of uptime, 1,100 zombie processes, and one reboot |
+| [An old Surface tablet became an always-on display](walkthroughs/05-old-tablet-display.md) | six taps, one firewall rule, and why ping lies |
+| [The Raspberry Pi was sharing more than it should](walkthroughs/06-pi-was-sharing-too-much.md) | a whole folder on the home network, and deploying by allowlist |
 
 ## Use a skill
 
@@ -70,10 +77,27 @@ real music library or a real inbox, and it kept the lessons from the parts that 
   not from your state's own website. [`inbox-cleanup`](skills/inbox-cleanup/SKILL.md#scams-to-recognize)
 - **Why does Microsoft Graph keep returning 429 when I move or mark emails?** Mailbox
   concurrency throttling: one call at a time, about 4 messages per mark-as-read call.
+- **Why is my Google TV / Android TV so slow?** Often weeks of uptime plus a crash-looping
+  app after an auto-update. Check it over ADB, then reboot. [Walkthrough](walkthroughs/04-tv-loading-funny.md)
+- **Can I turn my TV on from my computer?** Usually off yes, on no: many TVs drop off the
+  network in standby. Use a linked smart speaker or HDMI-CEC. [`tv-from-laptop`](skills/tv-from-laptop/SKILL.md)
+- **How do I turn an old Surface or Windows tablet into a wall display?** Remote Desktop
+  (six taps), stop modern-standby sleep on AC, Edge in kiosk mode at sign-in. [`tablet-display`](skills/tablet-display/SKILL.md)
+- **Why won't SSH connect to Windows even though sshd is running?** The firewall rule may
+  only apply to Private networks while your Wi-Fi is Public. [`tablet-display`](skills/tablet-display/SKILL.md#2-ssh-with-a-key-so-the-agent-can-run-things-on-it)
+- **What should I run on a Raspberry Pi at home?** A news collector, a dashboard, Docker
+  services, deployed by allowlist. [`pi-home-server`](skills/pi-home-server/SKILL.md)
+- **How do I keep a Windows laptop awake overnight for an AI job, and prove it stayed
+  awake?** A timed power request with a heartbeat log, plus `powercfg /requests`. [`overnight-jobs`](skills/overnight-jobs/SKILL.md)
 
 ## Status
 
-Growing. Next up: a paper-trading lab (strategies tested live with fake money, ranked on a
-leaderboard) and a 24/7 news collector on a Raspberry Pi.
+Growing. Next up:
+
+- **Home lab into the cloud:** connect the home Raspberry Pi securely into your own Azure
+  environment through a tunnel, so the home lab extends into the cloud. It's the bridge from
+  this repo to hands-on Azure labs in
+  [zallen-cloud-labs](https://github.com/zacha0dev/zallen-cloud-labs).
+- More walkthroughs as new home projects happen.
 
 MIT licensed. Built by [@zacha0dev](https://github.com/zacha0dev) with Claude.
