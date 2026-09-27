@@ -54,6 +54,11 @@ powershell -File spotify_to.ps1 "WHOLE HOUSE"
 powershell -File spotify_to.ps1 "WHOLE HOUSE" "My Favorite Radio"
 ```
 
+Routines **shuffle and skip 1-3 tracks** so they don't start the same way every time, and
+they check the speakers really report Spotify, reconnecting once if not: Spotify can say
+"Playing on WHOLE HOUSE" while the group sits idle. A **minimized** Spotify window still
+exposes its buttons, but the device picker won't open; the script maximizes it first.
+
 This **moves what's already playing**: the same song, at the same second, from your phone
 or wherever it was. The second argument starts a playlist or radio station from Your
 Library first, by name. It confirms with the app's `Playing on <name>` label.
