@@ -24,6 +24,7 @@ real music library or a real inbox, and it kept the lessons from the parts that 
 | [`tablet-display`](skills/tablet-display/SKILL.md) | Turns an old Windows tablet into an always-on display: remote access with no keyboard, no sleeping, a web page full screen on every sign-in | Windows 10/11 Pro tablet |
 | [`pi-home-server`](skills/pi-home-server/SKILL.md) | Runs a Raspberry Pi as a small home server: a 24/7 news collector, a dashboard on the home network, and deploying to it safely | Raspberry Pi, Python 3 |
 | [`robot-vacuum-home-assistant`](skills/robot-vacuum-home-assistant/SKILL.md) | Puts a cloud-only robot vacuum (Dreame, Xiaomi, Mova) under the agent's control via Home Assistant on a Pi: find it, set up, start / dock / rooms, recover when it's lost | Raspberry Pi, Docker, Python |
+| [`thermostat-home-assistant`](skills/thermostat-home-assistant/SKILL.md) | Controls an ecobee (or any HomeKit) thermostat locally through Home Assistant with no cloud key: read it, set it, a day/night schedule and a vacation mode | Home Assistant, Python |
 | [`overnight-jobs`](skills/overnight-jobs/SKILL.md) | Leaves a Windows laptop running agent jobs overnight: awake until a set time, proof in the morning, reachable from your phone | Windows, PowerShell |
 
 | Walkthrough | The story |
@@ -35,6 +36,7 @@ real music library or a real inbox, and it kept the lessons from the parts that 
 | [An old Surface tablet became an always-on display](walkthroughs/05-old-tablet-display.md) | six taps, one firewall rule, and why ping lies |
 | [The Raspberry Pi was sharing more than it should](walkthroughs/06-pi-was-sharing-too-much.md) | a whole folder on the home network, and deploying by allowlist |
 | [The robot vacuum joined the AI, then got lost](walkthroughs/07-robot-vacuum-got-lost.md) | a device that hides from scans, a beta integration, and a "drop" error |
+| [The thermostat's pairing code kept changing](walkthroughs/08-thermostat-code-kept-changing.md) | a dead cloud API, a local HomeKit route, and a code that's only good while the screen is open |
 
 ## Use a skill
 
@@ -54,7 +56,8 @@ real music library or a real inbox, and it kept the lessons from the parts that 
 - **Move, don't destroy.** Mail goes to Deleted Items, songs go to an Archive playlist.
 - **No passwords, no tokens.** The agent never signs in for you and never lifts a login
   token out of a browser. It works with what you're already signed in to.
-- **Receipts are sacred.** A cleanup never touches statements, receipts, bills or tickets.
+- **Receipts are sacred.** A cleanup never loses a statement, receipt, bill or ticket: it
+  stays in the mailbox, or it's written to a local log before it moves.
 - **Write down what you learn.** Every skill ends with the gotchas that cost real time, so
   the next run doesn't pay for them again.
 

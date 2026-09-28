@@ -1,0 +1,57 @@
+# A daily AC schedule plus vacation mode, owned by Home Assistant.
+# Paste into automations.yaml (or build the same in Settings -> Automations).
+# Needs a helper: Settings -> Devices & services -> Helpers -> Toggle "vacation_mode".
+# Change climate.home and the temperatures to yours.
+
+- id: ac_day
+  alias: AC day set-point
+  trigger:
+    - platform: time
+      at: "09:30:00"
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: "off"
+  action:
+    - service: climate.set_temperature
+      target: { entity_id: climate.home }
+      data: { temperature: 74 }
+
+- id: ac_night
+  alias: AC night set-point
+  trigger:
+    - platform: time
+      at: "21:30:00"
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: "off"
+  action:
+    - service: climate.set_temperature
+      target: { entity_id: climate.home }
+      data: { temperature: 69 }
+
+- id: ac_vacation_on
+  alias: AC vacation on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+      to: "on"
+  action:
+    - service: climate.set_temperature
+      target: { entity_id: climate.home }
+      data: { temperature: 80 }
+
+# Coming home: go straight back to whichever set-point the clock says.
+- id: ac_vacation_off
+  alias: AC vacation off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+      to: "off"
+  action:
+    - service: climate.set_temperature
+      target: { entity_id: climate.home }
+      data:
+        temperature: >
+          {{ 74 if today_at('09:30') <= now() < today_at('21:30') else 69 }}

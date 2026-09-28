@@ -21,6 +21,7 @@ well-disguised scams hiding inside the noise. So:
 
 Receipts, statements, bills, payment and transfer confirmations, tax and legal notices,
 tickets for upcoming events, anything tied to an open issue, and real conversations.
+(Receipts and confirmations can go once they're in a local log. See "Log first" below.)
 A receipt riding on an otherwise junky sender is still a receipt: filter by **subject**,
 not by sender, for those.
 
@@ -33,6 +34,28 @@ Older than ~30 days and not a record -> Deleted Items (recoverable, not purged):
   (keep statements and declines)
 - reminders for events already past, appointment reminders, outage alerts
 - newsletters and webinar invites from otherwise-important senders (keep their real notices)
+
+## Log first, then clean harder (the "keep only what's worth reading" pass)
+
+Two careful passes can still leave an inbox that *looks* full: hundreds of receipts,
+payment confirmations and "your statement is ready" notices, each one individually worth
+keeping. The fix is to **write every email to a local log first** (one line per email:
+date, sender, subject, first few hundred characters, a rough category), commit that file,
+and only then clean. Once the information lives in the log, the mailbox can keep just what
+needs reading:
+
+- **Keep:** unread to-dos, pinned or flagged mail, upcoming trips / tickets / events, tax
+  and legal papers, certificates, records of open issues, the latest bill from each
+  biller, and every real conversation.
+- **Move out, at any age:** receipts, payment and transfer confirmations, statement-ready
+  notices, sign-in and security alerts, marketing, newsletters. All still findable with
+  `grep` in the log, and still in Deleted Items for a while.
+
+Bonus: pull the promo emails out of the log into a **deals list** (store, month, size of
+the offer). It becomes a reference for when a store usually runs its sales.
+
+Blank out one-time codes in the log. A code is useless once it expires, but it still
+shouldn't sit in a file.
 
 ## Scams to recognize
 
@@ -73,6 +96,11 @@ folders is the most common reason people stop seeing their own mail.
   - Moves: 5 per call. **A 429 on a move often still moved the whole batch**, so the next
     call on the same IDs 404s. After any 429 or 404, fetch fresh IDs.
   - A 503 is transient; resend the same batch.
+- **For hundreds of moves, work in rounds.** Batches of ~8, fired back to back, all 429,
+  but each still moved roughly half its messages. The loop that cleared 300+: send the
+  batches -> pull the inbox fresh -> diff it against your planned ID list -> resend only
+  what's still there. Never resend an ID that already moved; one stale ID can fail the
+  whole batch. About six rounds did it.
 - **Verify at the end:** folder counts, plus date-sliced searches matched against your
   planned list, catch the ~10% a throttled run silently skips.
 - An open Outlook-on-the-web tab seems to count against the same concurrency limit.
