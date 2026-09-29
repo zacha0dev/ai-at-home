@@ -25,6 +25,7 @@ real music library or a real inbox, and it kept the lessons from the parts that 
 | [`pi-home-server`](skills/pi-home-server/SKILL.md) | Runs a Raspberry Pi as a small home server: a 24/7 news collector, a dashboard on the home network, and deploying to it safely | Raspberry Pi, Python 3 |
 | [`robot-vacuum-home-assistant`](skills/robot-vacuum-home-assistant/SKILL.md) | Puts a cloud-only robot vacuum (Dreame, Xiaomi, Mova) under the agent's control via Home Assistant on a Pi: find it, set up, start / dock / rooms, recover when it's lost | Raspberry Pi, Docker, Python |
 | [`thermostat-home-assistant`](skills/thermostat-home-assistant/SKILL.md) | Controls an ecobee (or any HomeKit) thermostat locally through Home Assistant with no cloud key: read it, set it, a day/night schedule and a vacation mode | Home Assistant, Python |
+| [`food-delivery-insights`](skills/food-delivery-insights/SKILL.md) | Pulls every restaurant that delivers to you on Uber Eats and every menu price into data you own: deal-adjusted best meals, healthy / protein picks, fee traps, price tracking, and what your orders really cost | a signed-in browser, Python |
 | [`overnight-jobs`](skills/overnight-jobs/SKILL.md) | Leaves a Windows laptop running agent jobs overnight: awake until a set time, proof in the morning, reachable from your phone | Windows, PowerShell |
 
 | Walkthrough | The story |
